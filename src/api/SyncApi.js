@@ -37,4 +37,8 @@ export default {
 	getListReports() {
 		return api.get('/api/mongo/report/list')
 	}
+	,
+	getListCategories(sub) {
+		return api.get(`/api/mongo/categories/${sub}`)
+	}
 }

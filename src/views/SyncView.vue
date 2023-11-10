@@ -1,7 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { inject, ref } from 'vue'
+import { inject, onMounted, ref } from 'vue'
 import { useSyncStore } from '../stores/sync'
+import { useLoginStore } from '../stores/login';
 
 //Components
 import navBar from '../components/navBar.vue';
@@ -10,6 +11,7 @@ import navBar from '../components/navBar.vue';
 const syncStore = useSyncStore()
 const toast = inject('toast')
 const router = useRouter()
+const loginStore = useLoginStore()
 
 const reports_sync = ref(false)
 const reports_empleados = ref(false)
@@ -20,6 +22,12 @@ const reports_departamentos = ref(false)
 const reports_categorias = ref(false)
 const reports_nexus = ref(false)
 const reports_impuestos = ref(false)
+const sub = ref()
+
+onMounted(() => {
+	const userData = loginStore.user
+	sub.value = userData.subsidiary
+})
 
 //Funciones
 const handleHome = () => {

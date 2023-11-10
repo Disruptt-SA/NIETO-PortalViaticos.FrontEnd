@@ -366,8 +366,8 @@ const addExpenseline = async () => {
 						<div class="w-full md:w-1/2 px-3 md:mt-2">
 							<label for="user" class="block text-sm font-medium text-sky-900">Moneda</label>
 							<select name="tipoimpuesto" id="tipoimpuesto"
-								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-								@change="selectCurrency" v-model="formExpense.currency" :disabled="props.view">
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:bg-gray-200 disabled:font-bold"
+								@change="selectCurrency" v-model="formExpense.currency" :disabled="true">
 								<option selected value="0">Seleccione...</option>
 								<option :value="currency.internalid" v-for="currency in syncStore.currencys"
 									:key="currency.internalid">{{ currency.name }}</option>
@@ -416,7 +416,7 @@ const addExpenseline = async () => {
 							<caption
 								class="p-5 text-lg font-semibold text-left text-white bg-sky-900 border-b-2 border-sky-950">
 								<div class="flex flex-col">
-									<p>Driving</p>
+									<p>Drivin</p>
 								</div>
 								<div class="flex flex-col md:flex-row justify-start items-start mt-5" v-if="!props.view">
 									<Button
@@ -429,7 +429,7 @@ const addExpenseline = async () => {
 											<path
 												d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.807.807 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155 1.806 0 4.037-.084 5.592-.155A1.479 1.479 0 0 0 15 9.611v-.413c0-.099-.01-.197-.03-.294l-.335-1.68a.807.807 0 0 0-.43-.563 1.807 1.807 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3H4.82Z" />
 										</svg>
-										<p class="ml-2">Agregar driving</p>
+										<p class="ml-2">Agregar drivin</p>
 									</Button>
 								</div>
 							</caption>

@@ -62,7 +62,7 @@ const handleAddDriving = () => {
 				<!-- Modal header -->
 				<div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
 					<h3 class="text-xl font-medium text-sky-900">
-						Agregue una nueva linea de driving
+						Agregue una nueva linea de drivin
 					</h3>
 					<button type="button"
 						class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
@@ -87,7 +87,7 @@ const handleAddDriving = () => {
 								<option selected value="0">Seleccione...</option>
 								<!-- <option value="123">codigo 1</option>
 								<option value="234">codigo 2</option> -->
-								<option :value="viaje.internalId" v-for="viaje in syncStore.viajes" :key="viaje.internalId">
+								<option :value="viaje.code" v-for="viaje in syncStore.viajes" :key="viaje.code">
 									{{ viaje.code }}</option>
 							</select>
 						</div>
@@ -99,7 +99,8 @@ const handleAddDriving = () => {
 								<!-- <option value="900">factura 1</option>
 								<option value="786">factura 2</option> -->
 								<option :value="facturas.internalId" v-for="facturas in syncStore.viajesFacturas"
-									:key="facturas.internalId">{{ facturas.code }}</option>
+									:key="facturas.internalId">{{ facturas.document }} - {{ facturas.code }} - {{
+										facturas.cliente }}</option>
 							</select>
 						</div>
 					</div>
@@ -117,7 +118,7 @@ const handleAddDriving = () => {
 							<path
 								d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
 						</svg>
-						<p class="ml-2">Agregar Linea de Driving</p>
+						<p class="ml-2">Agregar Linea de Drivin</p>
 					</Button>
 					<Button
 						class="flex justify-center items-center w-64 md:w-64 h-10 ml-0 md:ml-3 rounded-md btn-shadow bg-sky-900 text-white hover:bg-sky-800 hover:text-white text-lg"

@@ -40,7 +40,8 @@ const modalResetExpense = ref(false)
 onMounted(async () => {
 	const userData = loginStore.user
 	await loginStore.getSubsidiarieById(userData.subsidiary)
-	await syncStore.syncCategories
+	//await syncStore.syncCategories
+	await syncStore.listCategories(userData.subsidiary)
 	expenseStore.expenseLines = []
 	formData.value = {}
 	formData.value.entity = userData.internalid;
@@ -454,6 +455,9 @@ const onHandleSave = async () => {
 								Acciones
 							</th>
 							<th scope="col" class="px-6 py-3 text-center">
+								Fecha Gasto
+							</th>
+							<th scope="col" class="px-6 py-3 text-center">
 								Departamento
 							</th>
 							<th scope="col" class="px-6 py-3 text-center">
@@ -518,6 +522,9 @@ const onHandleSave = async () => {
 
 									<p class="ml-2">Eliminar</p>
 								</Button>
+							</td>
+							<td class="px-6 py-4 font-bold text-center">
+								{{ new Date(expenseLine.expensedate).toLocaleDateString() }}
 							</td>
 							<td class="px-6 py-4 font-bold text-center">
 								{{ expenseLine.deparmentName }}

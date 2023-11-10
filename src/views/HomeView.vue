@@ -57,7 +57,6 @@ const handleFilterExpenses = async () => {
 
   await syncStore.filterExpenses(ord, entity, starDate, finishDate, estatus)
 }
-
 </script>
 
 <template>
@@ -112,23 +111,24 @@ const handleFilterExpenses = async () => {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 v-model="filters.statusFilter">
                 <option selected value="0">Todos</option>
-                <option value="1">Pending Supervisor Approval</option>
-                <option value="2">Pending Accounting Approval</option>
-                <option value="3">Rejected</option>
-                <option value="4">Approved</option>
+                <option value="1">Pendiente aprobar por supervisor</option>
+                <option value="2">Pendiente aprobar por contaduria</option>
+                <option value="3">Rechazado</option>
+                <option value="4">Aprobado</option>
+                <!-- <option value="5">Pago completado</option> -->
               </select>
             </div>
             <div class="mr-2">
               <label for="user" class="block mb-2 text-sm font-medium text-sky-900">Fecha Inicio</label>
               <input type="date" id="user"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                required v-model="filters.startDateFilter">
+                v-model="filters.startDateFilter">
             </div>
             <div class="mr-2">
               <label for="user" class="block mb-2 text-sm font-medium text-sky-900">Fecha Final</label>
               <input type="date" id="user"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                required v-model="filters.finishDateFilter">
+                v-model="filters.finishDateFilter">
             </div>
             <div class="flex justify-center items-center mt-2 md:mt-0">
               <Button
@@ -167,9 +167,9 @@ const handleFilterExpenses = async () => {
         <table class="w-full text-sm text-left text-blue-100">
           <thead class="text-xs text-white uppercase bg-sky-900">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <!-- <th scope="col" class="px-6 py-3">
 
-              </th>
+              </th> -->
               <th scope="col" class="px-6 py-3">
                 Acciones
               </th>
@@ -194,11 +194,11 @@ const handleFilterExpenses = async () => {
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-slate-200 border-b border-sky-900 text-black" v-for="(report, index) in syncStore.reports"
+            <tr class="bg-slate-200 border-b border-sky-900 text-black" v-for="(report) in syncStore.reports"
               :key="report.internalid" v-show="report.entity_id === userData.internalid">
-              <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">
+              <!--  <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap">
                 {{ index + 1 }}
-              </th>
+              </th> -->
               <td class="px-6 py-4">
                 <button
                   class="flex justify-center items-center font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -225,7 +225,11 @@ const handleFilterExpenses = async () => {
                 {{ new Date(report.trandate).toLocaleDateString() }}
               </td>
               <td class="px-6 py-4">
-                {{ report.statusref }}
+                {{ report.statusref == 'pendingSupApproval' ? 'Pendiente aprobar por supervisor' : '' || report.statusref
+                  == 'pendingAcctApproval' ? 'Pendiente aprobar por contaduria' : '' || report.statusref
+                    == 'rejectedBySup' ? 'Rechazado' : '' || report.statusref
+                      == 'approvedByAcct' ? 'Aprobado' : '' || report.statusref
+                        == 'paidInFull' ? 'Pago completado' : '' }}
               </td>
               <td class="px-6 py-4">
                 {{ report.memo }}

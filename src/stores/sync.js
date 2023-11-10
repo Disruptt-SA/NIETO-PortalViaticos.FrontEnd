@@ -89,8 +89,16 @@ export const useSyncStore = defineStore('sync', () => {
 
 	const syncCategories = async () => {
 		try {
-			const { data } = await SyncApi.syncCategories()
-			categories.value = data.categories
+			await SyncApi.syncCategories()
+		} catch (error) {
+			console.log('error', error)
+		}
+	}
+
+	const listCategories = async (sub) => {
+		try {
+			const { data } = await SyncApi.getListCategories(sub)
+			categories.value = data.Categorias
 		} catch (error) {
 			console.log('error', error)
 		}
@@ -164,6 +172,7 @@ export const useSyncStore = defineStore('sync', () => {
 		syncLocations,
 		syncDepartments,
 		syncCategories,
+		listCategories,
 		syncNexus,
 		syncTaxes,
 		syncTaxesCodes,
